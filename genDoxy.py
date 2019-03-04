@@ -3,7 +3,7 @@ import os
 def isCFile(path):
 	startOfExt = path.rfind(".");
 	fileExt = path[startOfExt:];
-	if(fileExt == ".cpp" or fileExt == ".c"):
+	if(fileExt == ".cpp" or fileExt == ".c" or fileExt == ".h"):
 		return True;
 	else:
 		return False;
