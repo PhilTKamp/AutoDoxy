@@ -1,18 +1,12 @@
 import os
 
-def parseDir(filePath):
-	# print(filePath);
-	for(dirPath, dirNames, fileNames) in os.walk(filePath):
-		# print("Dir Path: ", dirPath);
-		# print("Dir Name: ", dirNames);
-		# print("File Names: ", fileNames);
-		for fileName in fileNames:
-			parseFile(dirPath + "/" + fileName);
-
-
-def parseFile(path):
-	print("Parsing file: ", path);
-
+def isCFile(path):
+	startOfExt = path.rfind(".");
+	fileExt = path[startOfExt:];
+	if(fileExt == ".cpp" or fileExt == ".c"):
+		return True;
+	else:
+		return False;
 
 
 def generateDoxygen():
@@ -30,5 +24,17 @@ def generateDoxygen():
 			print("Exiting...")
 		else:
 			print("Error finding/opening file or directory");
+
+
+def parseDir(filePath):
+	for(dirPath, dirNames, fileNames) in os.walk(filePath):
+		for fileName in fileNames:
+			parseFile(dirPath + "/" + fileName);
+
+
+def parseFile(path):
+	if(isCFile(path)):
+		print(path);
+
 
 generateDoxygen();
